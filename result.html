@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viti - Submission Result</title>
+    <style>
+        body {
+            font-family: 'Modern Love', sans-serif;
+            background-color: #2C2C2C;
+            color: #E0E0E0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            text-align: center;
+            padding: 40px;
+            background-color: rgba(31, 31, 31, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            color: #66a7ca;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #559eb9;
+            color: #532a2a;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #03DAC5;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Thank You!</h1>
+    <p id="regNo"></p>
+    <p id="name"></p>
+    <p id="monthlyBudget"></p>
+    <p id="dailyBudget"></p>
+    <p id="foodBudget"></p>
+    <p id="transportBudget"></p>
+    <p id="personalCareBudget"></p>
+    <p id="householdSuppliesBudget"></p>
+    <p id="miscellaneousBudget"></p>
+    <p id="foodSpent"></p>
+    <p id="transportSpent"></p>
+    <p id="personalCareSpent"></p>
+    <p id="householdSuppliesSpent"></p>
+    <p id="miscellaneousSpent"></p>
+    
+    <button onclick="window.history.back()">Go Back</button>
+</div>
+
+<script>
+    // Assuming data is sent via GET parameters
+    const params = new URLSearchParams(window.location.search);
+    
+    document.getElementById('regNo').innerText = Registration No: ${params.get('regNo')};
+    document.getElementById('name').innerText = Name: ${params.get('name')};
+    document.getElementById('monthlyBudget').innerText = Monthly Budget: $${params.get('monthlyBudget')};
+    document.getElementById('dailyBudget').innerText = Daily Budget: $${params.get('dailyBudget')};
+    document.getElementById('foodBudget').innerText = Food Budget: $${params.get('foodBudget')};
+    document.getElementById('transportBudget').innerText = Transport Budget: $${params.get('transportBudget')};
+    document.getElementById('personalCareBudget').innerText = Personal Care Budget: $${params.get('personalCareBudget')};
+    document.getElementById('householdSuppliesBudget').innerText = Household Supplies Budget: $${params.get('householdSuppliesBudget')};
+    document.getElementById('miscellaneousBudget').innerText = Miscellaneous Budget: $${params.get('miscellaneousBudget')};
+    document.getElementById('foodSpent').innerText = Food Spent Today: $${params.get('foodSpent')};
+    document.getElementById('transportSpent').innerText = Transport Spent Today: $${params.get('transportSpent')};
+    document.getElementById('personalCareSpent').innerText = Personal Care Spent Today: $${params.get('personalCareSpent')};
+    document.getElementById('householdSuppliesSpent').innerText = Household Supplies Spent Today: $${params.get('householdSuppliesSpent')};
+    document.getElementById('miscellaneousSpent').innerText = Miscellaneous Spent Today: $${params.get('miscellaneousSpent')};
+</script>
+
+</body>
+</html>
