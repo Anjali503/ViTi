@@ -1,0 +1,286 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viti - Personal Finance Tracker</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Modern Love', sans-serif;
+            background-image: url('https://www.mindinventory.com/blog/wp-content/uploads/2021/06/expense-tracking-app.webp');
+            background-size: cover;
+            background-position: center;
+            color: #E0E0E0; /* Off-white for better contrast */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            width: 80%;
+            max-width: 500px;
+            padding: 40px;
+            background-color: rgba(31, 31, 31, 0.8); /* Semi-transparent background */
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+
+        .container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 42px;
+            color: #66a7ca; /* Soft lavender */
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #7fa4fb;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        label {
+            font-size: 18px;
+            color: #E0E0E0;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            font-size: 16px;
+            padding: 12px;
+            margin: 12px 0;
+            width: 100%;
+            border: 2px solid #6591b1;
+            border-radius: 8px;
+            background-color: #2C2C2C;
+            color: #E0E0E0;
+            transition: border 0.3s ease;
+        }
+
+        input:focus {
+            border: 2px solid #03DAC5; /* Teal highlight on focus */
+        }
+
+        button {
+            font-size: 18px;
+            padding: 12px 25px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #559eb9;
+            color: #532a2a;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        button:hover {
+            background-color: #03DAC5;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .page {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nav-button {
+            width: 48%;
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px;
+            margin: 20px;
+        }
+
+        .category-icons {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            button {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>ViTi</h1>
+    <img src="https://cdn-icons-png.flaticon.com/128/10373/10373918.png" alt="Budget Icon" class="icon">
+    <img src="https://cdn-icons-png.flaticon.com/128/2134/2134725.png" alt="Expense Tracking Icon" class="icon">
+
+    <!-- Welcome Page -->
+    <div id="page0" class="page active">
+        <h2>Welcome VIT student!</h2>
+        <p>We are here to help you manage your personal finance with ease.</p>
+        <button onclick="nextPage(0)">Get Started</button>
+    </div>
+
+    <!-- Login Details Page -->
+    <div id="page1" class="page">
+        <h2>Login Details</h2>
+        <label for="regNo">Registration No.:</label>
+        <input type="text" id="regNo" name="regNo" required><br>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+        <div class="navigation">
+            <button class="nav-button" onclick="prevPage(1)">Back</button>
+            <button class="nav-button" onclick="nextPage(1)">Login</button>
+        </div>
+    </div>
+
+    <!-- Budget Setup Page -->
+    <div id="page2" class="page">
+        <h2>Enter Your Current Month</h2>
+        <form>
+            <label for="month">Select Month:</label>
+            <select id="month" name="month">
+                <option value="january">January</option>
+                <option value="february">February</option>
+                <option value="march">March</option>
+                <option value="april">April</option>
+                <option value="may">May</option>
+                <option value="june">June</option>
+                <option value="july">July</option>
+                <option value="august">August</option>
+                <option value="september">September</option>
+                <option value="october">October</option>
+                <option value="november">November</option>
+                <option value="december">December</option>
+            </select>
+            <br><br>
+        </form>
+        <h2>Set Your Budget</h2>
+        <label for="monthlyBudget">Ideal Monthly Budget:</label>
+        <input type="number" id="monthlyBudget" name="monthlyBudget" required><br>
+        <label for="dailyBudget">Ideal Daily Budget:</label>
+        <input type="number" id="dailyBudget" name="dailyBudget" required><br>
+        <div class="navigation">
+            <button class="nav-button" onclick="prevPage(2)">Back</button>
+            <button class="nav-button" onclick="nextPage(2)">Next</button>
+        </div>
+    </div>
+
+    <!-- Category Budgeting Page -->
+    <div id="page3" class="page">
+        <h2>How much do you want to spend in each category?</h2>
+        <div class="category-icons">
+            <img src="https://cdn-icons-png.flaticon.com/128/1037/1037762.png" alt="Food" class="icon">
+            <img src="https://cdn-icons-png.flaticon.com/128/16133/16133222.png" alt="Transport" class="icon">
+            <img src="https://cdn-icons-png.flaticon.com/128/11365/11365017.png" alt="Personal Care" class="icon">
+            <img src="https://cdn-icons-png.flaticon.com/128/11519/11519067.png" alt="Household Supplies" class="icon">
+            <img src="https://cdn-icons-png.flaticon.com/128/5692/5692058.png" alt="Miscellaneous" class="icon">
+        </div>
+        <label for="foodBudget">Food:</label>
+        <input type="number" id="foodBudget" name="foodBudget" required><br>
+        <label for="transportBudget">Transport:</label>
+        <input type="number" id="transportBudget" name="transportBudget" required><br>
+        <label for="personalCareBudget">Personal Care:</label>
+        <input type="number" id="personalCareBudget" name="personalCareBudget" required><br>
+        <label for="householdSuppliesBudget">Household Supplies:</label>
+        <input type="number" id="householdSuppliesBudget" name="householdSuppliesBudget" required><br>
+        <label for="miscellaneousBudget">Miscellaneous Expenses:</label>
+        <input type="number" id="miscellaneousBudget" name="miscellaneousBudget" required><br>
+        <div class="navigation">
+            <button class="nav-button" onclick="prevPage(3)">Back</button>
+            <button class="nav-button" onclick="nextPage(3)">Next</button>
+        </div>
+    </div>
+
+    <!-- Expense Tracking Page -->
+    <div id="page4" class="page">
+        <h2>How much did you spend today?</h2>
+        <label for="foodSpent">Food:</label>
+        <input type="number" id="foodSpent" name="foodSpent" required><br>
+        <label for="transportSpent">Transport:</label>
+        <input type="number" id="transportSpent" name="transportSpent" required><br>
+        <label for="personalCareSpent">Personal Care:</label>
+        <input type="number" id="personalCareSpent" name="personalCareSpent" required><br>
+        <label for="householdSuppliesSpent">Household Supplies:</label>
+        <input type="number" id="householdSuppliesSpent" name="householdSuppliesSpent" required><br>
+        <label for="miscellaneousSpent">Miscellaneous Expenses:</label>
+        <input type="number" id="miscellaneousSpent" name="miscellaneousSpent" required><br>
+        <div class="navigation">
+            <button class="nav-button" onclick="prevPage(4)">Back</button>
+            <button class="nav-button" onclick="submitForm()">Submit</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentPage = 0;
+    
+    function nextPage(page) {
+        document.getElementById(`page${page}`).classList.remove('active');
+        currentPage = page + 1;
+        document.getElementById(`page${currentPage}`).classList.add('active');
+    }
+
+    function prevPage(page) {
+        document.getElementById(`page${page}`).classList.remove('active');
+        currentPage = page - 1;
+        document.getElementById(`page${currentPage}`).classList.add('active');
+    }
+
+    function submitForm() {
+        const regNo = document.getElementById('regNo').value;
+        const name = document.getElementById('name').value;
+        const monthlyBudget = document.getElementById('monthlyBudget').value;
+        const dailyBudget = document.getElementById('dailyBudget').value;
+        const foodBudget = document.getElementById('foodBudget').value;
+        const transportBudget = document.getElementById('transportBudget').value;
+        const personalCareBudget = document.getElementById('personalCareBudget').value;
+        const householdSuppliesBudget = document.getElementById('householdSuppliesBudget').value;
+        const miscellaneousBudget = document.getElementById('miscellaneousBudget').value;
+        const foodSpent = document.getElementById('foodSpent').value;
+        const transportSpent = document.getElementById('transportSpent').value;
+        const personalCareSpent = document.getElementById('personalCareSpent').value;
+        const householdSuppliesSpent = document.getElementById('householdSuppliesSpent').value;
+        const miscellaneousSpent = document.getElementById('miscellaneousSpent').value;
+        
+        alert(`Thank you ${name} (Reg No: ${regNo}). Your data has been saved!`);
+    }
+</script>
+</body>
+</html>
